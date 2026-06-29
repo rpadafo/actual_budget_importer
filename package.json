@@ -1,0 +1,11 @@
+{
+  "name": "actualbudget-importer",
+  "version": "26.0.0",
+  "description": "Importador automático de CSV procesados hacia Actual Budget",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "@actual-app/api": "^26.6.0",
+    "chokidar": "^3.6.0"
+  }
+}

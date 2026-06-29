@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  # El nuevo importador hacia Actual Budget
+  actualbudget-importer:
+    image: ghcr.io/rpadafo/actualbudget-importer:latest # O compilarlo en local con build: ./actualbudget-importer
+    container_name: actualbudget_importer
+    restart: unless-stopped
+    environment:
+      - ACTUAL_SERVER_URL=http://IP_DE_TU_NAS:5006
+      - ACTUAL_PASSWORD=tu_contraseña_de_actual
+      - ACTUAL_SYNC_ID=ID_DE_TU_PRESUPUESTO # Lo obtienes en Ajustes Avanzados -> ID de sincronización en Actual
+      # IDs de las cuentas creadas dentro de Actual Budget (Ajustes -> ID de la cuenta)
+      - ACCOUNT_ID_BANKINTER=id_cuenta_bk
+      - ACCOUNT_ID_LACAIXA=id_cuenta_lc
+      - ACCOUNT_ID_SANTANDER=id_cuenta_sa
+      - ACCOUNT_ID_SABADELL=id_cuenta_bs
+    volumes:
+      # Compartimos exactamente la misma carpeta física del NAS donde el script de Python deja los CSV
+      - /volume1/bancos/csv:/csv
